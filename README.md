@@ -1,3 +1,3 @@
 # DHLog
 
-Log tool for my Java code
+Log class for my Java code
