@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Offers log functions.<br>
+ * Offers methods for log.<br>
  * <br>
  * This class has six flags to set to what extent events should be logged.<br>
  * Flags are assigned as follows.<br>
