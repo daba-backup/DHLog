@@ -5,10 +5,10 @@
 
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>dhlog</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 
 	<name>DHLog</name>
-	<description>Log class for my Java code</description>
+	<description>Log class for my Java programs</description>
 	<url>https://github.com/Dabasan/DHLog</url>
 
 	<licenses>
