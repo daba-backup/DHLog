@@ -68,7 +68,7 @@ public class LogWriter {
 	 * @param log_filename Filename of the log
 	 */
 	public static void CreateLogWriter(String log_directory_name,String log_filename) {
-		//Close the already opened log file first.
+		//Close the already opened log writer first.
 		if(bw!=null) {
 			CloseLogWriter();
 		}
@@ -90,7 +90,7 @@ public class LogWriter {
 	 * @param os Output stream
 	 */
 	public static void CreateLogWriter(OutputStream os) {
-		//Close the already opened log file first.
+		//Close the already opened log writer first.
 		if(bw!=null) {
 			CloseLogWriter();
 		}
@@ -98,7 +98,7 @@ public class LogWriter {
 		bw=new BufferedWriter(new OutputStreamWriter(os));
 	}
 	/**
-	 * Closes the log file.
+	 * Closes the log writer.
 	 */
 	public static void CloseLogWriter() {
 		if(bw!=null) {
