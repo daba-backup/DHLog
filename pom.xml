@@ -8,7 +8,7 @@
 	<version>2.0.0</version>
 
 	<name>DHLog</name>
-	<description>Log class for my Java programs</description>
+	<description>Simple log class for my Java programs</description>
 	<url>https://github.com/Dabasan/DHLog</url>
 
 	<licenses>
