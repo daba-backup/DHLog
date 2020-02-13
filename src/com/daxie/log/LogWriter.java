@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,10 +19,7 @@ import java.util.TimeZone;
  * @author Daba
  *
  */
-public class LogFile {
-	private static String directory="./";
-	private static String filename="log.txt";
-	
+public class LogWriter {
 	//|0|0|TRACE|DEBUG|INFO|WARN|ERROR|FATAL|
 	public static final int LOG_LEVEL_FATAL=0b00000001;
 	public static final int LOG_LEVEL_ERROR=0b00000010;
@@ -50,20 +48,6 @@ public class LogFile {
 	}
 	
 	/**
-	 * Sets the directory where the log file will be created.<br>
-	 * @param a_directory Directory name
-	 */
-	public static void SetLogDirectory(String a_directory) {
-		directory=a_directory;
-	}
-	/**
-	 * Sets the filename of the log file.
-	 * @param a_filename Filename
-	 */
-	public static void SetLogFilename(String a_filename) {
-		filename=a_filename;
-	}
-	/**
 	 * Sets the flags to specify to what extent events should be logged.
 	 * @param flags Flags
 	 */
@@ -79,31 +63,44 @@ public class LogFile {
 	}
 	
 	/**
-	 * Creates a log file.<br>
-	 * Call this method before logging.
+	 * Creates a log file.
+	 * @param log_directory_name Directory name of the log
+	 * @param log_filename Filename of the log
 	 */
-	public static void OpenLogFile() {
-		//Close the opened log file first.
+	public static void CreateLogWriter(String log_directory_name,String log_filename) {
+		//Close the already opened log file first.
 		if(bw!=null) {
-			CloseLogFile();
+			CloseLogWriter();
 		}
 		
-		File log_directory=new java.io.File(directory);
+		File log_directory=new File(log_directory_name);
 		if(log_directory.exists()==false)log_directory.mkdirs();
 		
 		try {
 			bw=new BufferedWriter(
 					new OutputStreamWriter(
-							new FileOutputStream(directory+"/"+filename)));
+							new FileOutputStream(log_directory_name+"/"+log_filename)));
 		}
 		catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 	/**
+	 * Creates a log writer from an output stream.
+	 * @param os Output stream
+	 */
+	public static void CreateLogWriter(OutputStream os) {
+		//Close the already opened log file first.
+		if(bw!=null) {
+			CloseLogWriter();
+		}
+		
+		bw=new BufferedWriter(new OutputStreamWriter(os));
+	}
+	/**
 	 * Closes the log file.
 	 */
-	public static void CloseLogFile() {
+	public static void CloseLogWriter() {
 		if(bw!=null) {
 			try {
 				bw.flush();
